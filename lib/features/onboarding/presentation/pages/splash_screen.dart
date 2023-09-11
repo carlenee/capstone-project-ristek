@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
           nav.splashPush(const MainWrapper());
         }
       },
-      child: Scaffold(
+      child: const Scaffold(
         body: Center(
           child: Text('Medtech'),
         ),

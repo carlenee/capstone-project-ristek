@@ -4,7 +4,6 @@ import 'package:capstone_project/features/onboarding/presentation/bloc/user_init
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:capstone_project/services/shared_preferences.dart';
 
-import 'user_initialization_bloc.dart';
 import 'user_initialization_state.dart';
 
 class UserInitializationBloc

@@ -66,7 +66,7 @@ class _MainWrapperState extends State<MainWrapper> {
       child: Scaffold(
         body: IndexedStack(
           index: _selectedIndex,
-          children: [
+          children: const [
             // HomePage(
             //   homePageBloc: _homePageBloc,
             // ),
