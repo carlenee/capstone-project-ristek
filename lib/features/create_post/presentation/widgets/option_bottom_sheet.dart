@@ -34,10 +34,9 @@ class OptionBottomSheet {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () {
-                  print('pressed');
                   bloc.add(PickImageFromGallery());
                 },
                 child: Row(
@@ -47,18 +46,18 @@ class OptionBottomSheet {
                       "Choose photo or video",
                       style: CapstoneFontTheme.greySecondaryMedium,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.photo_outlined,
                       color: CapstoneColors.greySecondary,
                     )
                   ],
                 ),
               ),
-              Spacer(),
-              Divider(
+              const Spacer(),
+              const Divider(
                 color: CapstoneColors.grey,
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () {},
                 child: Row(
@@ -68,7 +67,7 @@ class OptionBottomSheet {
                       "Take photo or video",
                       style: CapstoneFontTheme.greySecondaryMedium,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.camera_alt_outlined,
                       color: CapstoneColors.greySecondary,
                     )

@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/create_post/presentation/bloc/bloc/create_post_bloc.dart';
@@ -6,7 +5,6 @@ import 'package:capstone_project/features/create_post/presentation/widgets/_widg
 import 'package:capstone_project/services/di.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreatePostPage extends StatefulWidget {
@@ -22,7 +20,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _bloc = get<CreatePostBloc>();
     super.initState();
   }
@@ -41,7 +38,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
               bloc: _bloc,
               builder: (context, state) {
                 if (state is CreatePostLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(
                       color: CapstoneColors.purple,
                     ),
@@ -66,7 +63,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                       bloc: _bloc,
                       builder: (context, state) {
                         if (state is CreatePostLoading) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(
                               color: CapstoneColors.purple,
                             ),
@@ -88,13 +85,13 @@ class _CreatePostPageState extends State<CreatePostPage> {
                         return const SizedBox();
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 48,
                     ),
                     PostTextField(
                         controller: _textContentController,
                         hint: 'Write your messages here'),
-                    SizedBox(
+                    const SizedBox(
                       height: 48,
                     ),
                     AddPhotoButton(

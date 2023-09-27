@@ -8,9 +8,9 @@ sealed class HomePageEvent extends Equatable {
 }
 
 class HomePageLoadDataEvent extends HomePageEvent {
-  PagingController pagingController;
-  int pageKey;
-  HomePageLoadDataEvent({required this.pagingController, required this.pageKey});
+  final PagingController pagingController;
+  final int pageKey;
+  const HomePageLoadDataEvent({required this.pagingController, required this.pageKey});
 
   @override
   List<Object> get props => [pagingController, pageKey];

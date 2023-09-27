@@ -1,5 +1,4 @@
 import 'package:capstone_project/core/constants/dictionary.dart';
-import 'package:capstone_project/features/create_post/presentation/pages/create_post_page.dart';
 import 'package:capstone_project/services/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +9,6 @@ import 'features/homepage/presentation/pages/home_page.dart';
 import 'features/onboarding/presentation/bloc/user_initialization_bloc.dart';
 import 'features/onboarding/presentation/bloc/user_initialization_event.dart';
 import 'features/onboarding/presentation/bloc/user_initialization_state.dart';
-import 'features/onboarding/presentation/pages/splash_screen.dart';
 
 final nav = NavigationService();
 

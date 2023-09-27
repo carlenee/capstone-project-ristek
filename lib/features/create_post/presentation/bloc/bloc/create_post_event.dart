@@ -10,7 +10,7 @@ sealed class CreatePostEvent extends Equatable {
 class PickImageFromGallery extends CreatePostEvent {}
 
 class UploadPostEvent extends CreatePostEvent {
-  File? pickedImage;
-  String? content;
-  UploadPostEvent({this.pickedImage, this.content});
+  final File? pickedImage;
+  final String? content;
+  const UploadPostEvent({this.pickedImage, this.content});
 }

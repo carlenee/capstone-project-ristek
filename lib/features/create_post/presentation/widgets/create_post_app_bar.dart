@@ -21,12 +21,12 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: CapstoneColors.blackPrimary,
       leading: IconButton(
         onPressed: () => Navigator.of(context).pop(),
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back_ios_new_outlined,
           color: CapstoneColors.purple,
         ),
       ),
-      title: Text(
+      title: const Text(
         "Create a Post",
         style: CapstoneFontTheme.purpleheader,
       ),
@@ -49,7 +49,7 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
                     );
                   }
                 },
-                child: Text(
+                child: const Text(
                   'Post',
                   style: CapstoneFontTheme.purple,
                 ));

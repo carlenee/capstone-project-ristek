@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   late final HomePageBloc _bloc;
   @override
   void initState() {
-    // TODO: implement initState
+   
     _bloc = get<HomePageBloc>();
     _bloc.add(
         HomePageLoadDataEvent(pagingController: _pagingController, pageKey: 1));
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                 bloc: _bloc,
                 builder: (context, state) {
                   if (state is HomePageInitial) {
-                    return Center(
+                    return const Center(
                       child: Text(
                         "No Post yet",
                         style: CapstoneFontTheme.greySecondary,
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     );
                   }
                   if (state is HomePageLoadingState) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(
                         color: CapstoneColors.purple,
                       ),
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                     return Expanded(
                       child: PagedListView.separated(
                         pagingController: _pagingController,
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                           height: 20,
                         ),
                         builderDelegate: PagedChildBuilderDelegate<PostModel>(

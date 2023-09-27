@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
+
 import 'package:capstone_project/features/create_post/data/models/upload_post_model.dart';
 import 'package:capstone_project/features/create_post/domain/usecase/upload_post_use_case.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,7 +14,7 @@ part 'create_post_state.dart';
 @injectable
 @singleton
 class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
-  UploadPostUseCase _uploadPostUseCase;
+  final UploadPostUseCase _uploadPostUseCase;
   CreatePostBloc(this._uploadPostUseCase) : super(CreatePostInitial()) {
     on<PickImageFromGallery>(_pickImage);
     on<UploadPostEvent>(_postContent);
@@ -37,7 +38,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           );
         } else {
           emit(
-            CreatePostError(
+            const CreatePostError(
                 message: "There's an error while getting the image"),
           );
         }
@@ -55,7 +56,6 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     UploadPostEvent event,
     Emitter<CreatePostState> emit,
   ) async {
-    print(event.pickedImage!.path.split('/').last);
     try {
       emit(CreatePostLoading());
       final resp = await _uploadPostUseCase.execute(UploadPostModel(
@@ -67,7 +67,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         emit(CreatePostSuccess());
       } else {
         emit(
-          CreatePostError(message: "Error while uploading post"),
+          const CreatePostError(message: "Error while uploading post"),
         );
       }
     } catch (e) {

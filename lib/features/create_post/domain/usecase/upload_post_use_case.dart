@@ -8,8 +8,7 @@ class UploadPostUseCase {
 
   UploadPostUseCase(this._repository);
 
-  @override
-  Future<bool> execute(UploadPostModel arg) {
+  Future<bool> execute(UploadPostModel? arg) {
     if (arg == null) throw Exception('Arguments required');
     return _repository.uploadPost(arg);
   }

@@ -48,11 +48,11 @@ class PostCard extends StatelessWidget {
                 content ?? '',
                 style: CapstoneFontTheme.white,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               if (photo != null) ...[
-                Container(
+                SizedBox(
                   width: 200,
                   height: 200,
                   child: Image.network(photo!),

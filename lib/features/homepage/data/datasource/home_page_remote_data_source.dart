@@ -25,14 +25,12 @@ class HomePageRemoteDataSourceImpl implements HomePageRemoteDataSource {
       "password": "abcdefghi",
     });
 
-    print(resp);
     if (resp.statusCode == 200) {
       for (var post in resp.data['data']) {
         listOfPost.add(
           PostModel.fromJson(post),
         );
       }
-      ;
       return listOfPost;
     }
     return null;

@@ -28,7 +28,7 @@ class HomePageHeader extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => CreatePostPage(),
+                  builder: (context) => const CreatePostPage(),
                 ),
               );
             },
