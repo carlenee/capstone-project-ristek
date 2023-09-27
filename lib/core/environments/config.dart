@@ -1,3 +1,4 @@
+import 'package:capstone_project/services/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -11,7 +12,7 @@ class Config {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
     await SharedPreferencesService.init();
-
+    configureDependencies();
     Intl.defaultLocale = CapstoneDictionary.locale;
     timeago.setLocaleMessages(CapstoneDictionary.locale, timeago.IdMessages());
     await initializeDateFormatting(CapstoneDictionary.locale, '');
