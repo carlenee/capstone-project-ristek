@@ -101,6 +101,7 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       CButton(
                         text: "Masuk",
+                        isLoading: state is SignInLoadingState,
                         onTap: () async {
                           if (_emailController.text.isEmpty ||
                             _passwordController.text.isEmpty) {
