@@ -1,0 +1,4 @@
+enum CTextFieldType {
+  regular,
+  password,
+}
