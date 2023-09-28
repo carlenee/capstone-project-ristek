@@ -1,6 +1,6 @@
-import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/_themes.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});

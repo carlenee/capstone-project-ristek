@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:capstone_project/core/environments/endpoints.dart';
-import 'package:capstone_project/services/shared_preferences.dart';
+
+import '../core/environments/endpoints.dart';
+import 'shared_preferences.dart';
 
 class HttpService {
   static final Dio _client = Dio();
