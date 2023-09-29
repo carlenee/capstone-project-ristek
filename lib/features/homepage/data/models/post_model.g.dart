@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'post_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
+_$PostModelImpl _$$PostModelImplFromJson(Map<String, dynamic> json) =>
+    _$PostModelImpl(
       id: json['id'] as String,
       title: json['title'] as String,
       content: json['content'] as String,
@@ -21,7 +20,7 @@ _$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
       dislikeCount: json['dislikeCount'] as int,
     );
 
-Map<String, dynamic> _$$_PostModelToJson(_$_PostModel instance) =>
+Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

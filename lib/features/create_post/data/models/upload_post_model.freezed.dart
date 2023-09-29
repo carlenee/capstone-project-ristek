@@ -74,22 +74,22 @@ class _$UploadPostModelCopyWithImpl<$Res, $Val extends UploadPostModel>
 }
 
 /// @nodoc
-abstract class _$$_UploadPostModelCopyWith<$Res>
+abstract class _$$UploadPostModelImplCopyWith<$Res>
     implements $UploadPostModelCopyWith<$Res> {
-  factory _$$_UploadPostModelCopyWith(
-          _$_UploadPostModel value, $Res Function(_$_UploadPostModel) then) =
-      __$$_UploadPostModelCopyWithImpl<$Res>;
+  factory _$$UploadPostModelImplCopyWith(_$UploadPostModelImpl value,
+          $Res Function(_$UploadPostModelImpl) then) =
+      __$$UploadPostModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String title, String content, String picture});
 }
 
 /// @nodoc
-class __$$_UploadPostModelCopyWithImpl<$Res>
-    extends _$UploadPostModelCopyWithImpl<$Res, _$_UploadPostModel>
-    implements _$$_UploadPostModelCopyWith<$Res> {
-  __$$_UploadPostModelCopyWithImpl(
-      _$_UploadPostModel _value, $Res Function(_$_UploadPostModel) _then)
+class __$$UploadPostModelImplCopyWithImpl<$Res>
+    extends _$UploadPostModelCopyWithImpl<$Res, _$UploadPostModelImpl>
+    implements _$$UploadPostModelImplCopyWith<$Res> {
+  __$$UploadPostModelImplCopyWithImpl(
+      _$UploadPostModelImpl _value, $Res Function(_$UploadPostModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_UploadPostModelCopyWithImpl<$Res>
     Object? content = null,
     Object? picture = null,
   }) {
-    return _then(_$_UploadPostModel(
+    return _then(_$UploadPostModelImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,12 @@ class __$$_UploadPostModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UploadPostModel implements _UploadPostModel {
-  const _$_UploadPostModel(
+class _$UploadPostModelImpl implements _UploadPostModel {
+  const _$UploadPostModelImpl(
       {required this.title, required this.content, required this.picture});
 
-  factory _$_UploadPostModel.fromJson(Map<String, dynamic> json) =>
-      _$$_UploadPostModelFromJson(json);
+  factory _$UploadPostModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UploadPostModelImplFromJson(json);
 
   @override
   final String title;
@@ -141,7 +141,7 @@ class _$_UploadPostModel implements _UploadPostModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UploadPostModel &&
+            other is _$UploadPostModelImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.picture, picture) || other.picture == picture));
@@ -154,12 +154,13 @@ class _$_UploadPostModel implements _UploadPostModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UploadPostModelCopyWith<_$_UploadPostModel> get copyWith =>
-      __$$_UploadPostModelCopyWithImpl<_$_UploadPostModel>(this, _$identity);
+  _$$UploadPostModelImplCopyWith<_$UploadPostModelImpl> get copyWith =>
+      __$$UploadPostModelImplCopyWithImpl<_$UploadPostModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UploadPostModelToJson(
+    return _$$UploadPostModelImplToJson(
       this,
     );
   }
@@ -169,10 +170,10 @@ abstract class _UploadPostModel implements UploadPostModel {
   const factory _UploadPostModel(
       {required final String title,
       required final String content,
-      required final String picture}) = _$_UploadPostModel;
+      required final String picture}) = _$UploadPostModelImpl;
 
   factory _UploadPostModel.fromJson(Map<String, dynamic> json) =
-      _$_UploadPostModel.fromJson;
+      _$UploadPostModelImpl.fromJson;
 
   @override
   String get title;
@@ -182,6 +183,6 @@ abstract class _UploadPostModel implements UploadPostModel {
   String get picture;
   @override
   @JsonKey(ignore: true)
-  _$$_UploadPostModelCopyWith<_$_UploadPostModel> get copyWith =>
+  _$$UploadPostModelImplCopyWith<_$UploadPostModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
