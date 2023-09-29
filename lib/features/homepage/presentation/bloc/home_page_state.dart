@@ -13,10 +13,14 @@ final class HomePageLoadingState extends HomePageState {}
 
 final class HomePageLoadedState extends HomePageState {
   final List<PostModel>? posts;
- 
+
   final double? scrollPosition;
 
-  const HomePageLoadedState(
-      {required this.posts,  this.scrollPosition = 0});
-  
+  const HomePageLoadedState({required this.posts, this.scrollPosition = 0});
+}
+
+final class HomepageFailureState extends HomePageState {
+  final String? message;
+
+  const HomepageFailureState({this.message});
 }

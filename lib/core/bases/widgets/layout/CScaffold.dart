@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class CScaffold extends StatelessWidget {
@@ -22,7 +24,7 @@ class CScaffold extends StatelessWidget {
           vertical: 20,
           horizontal: 24,
         ),
-        child: this.body,
+        child: body,
       );
     }
     if (safeArea) {

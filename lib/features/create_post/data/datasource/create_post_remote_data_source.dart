@@ -1,5 +1,6 @@
 import 'package:capstone_project/core/environments/endpoints.dart';
 import 'package:capstone_project/features/create_post/data/models/upload_post_model.dart';
+import 'package:capstone_project/services/http.dart';
 import 'package:dio/dio.dart';
 // ignore: duplicate_import
 import 'package:dio/dio.dart';
@@ -16,11 +17,7 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
   Future<bool> uploadPost(UploadPostModel uploadPostModel) async {
     const url = Endpoints.post;
     final model = uploadPostModel.toJson();
-
-    var dio = Dio();
-    dio.options.headers['content-Type'] = 'multipart/form-data';
-    dio.options.headers["Authorization"] =
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY5NTc5OTEzNCwiZXhwIjoxNjk1ODcxMTM0fQ.X--ktfBwlC62zp3XocxZ212dAnFrqR-9d1PKUmfbBjQ";
+    
 
     model['picture'] = await MultipartFile.fromFile(
       uploadPostModel.picture,
@@ -29,8 +26,8 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
     );
 
     var formData = FormData.fromMap(model);
+    final resp = await HttpService.post(url, body: formData);
 
-    final resp = await dio.post(url, data: formData);
     return resp.data['status'];
   }
 }

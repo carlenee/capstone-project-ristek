@@ -14,3 +14,6 @@ class UploadPostEvent extends CreatePostEvent {
   final String? content;
   const UploadPostEvent({this.pickedImage, this.content});
 }
+
+class RefreshPostEvent extends CreatePostEvent {
+}

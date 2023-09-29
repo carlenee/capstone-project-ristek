@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   late final HomePageBloc _bloc;
   @override
   void initState() {
-   
     _bloc = get<HomePageBloc>();
     _bloc.add(
         HomePageLoadDataEvent(pagingController: _pagingController, pageKey: 1));
@@ -69,18 +68,22 @@ class _HomePageState extends State<HomePage> {
                   }
                   if (state is HomePageLoadedState) {
                     return Expanded(
-                      child: PagedListView.separated(
-                        pagingController: _pagingController,
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 20,
-                        ),
-                        builderDelegate: PagedChildBuilderDelegate<PostModel>(
-                          itemBuilder: (context, item, index) {
-                            return PostCard(
-                              content: item.content,
-                              photo: item.photoUrl,
-                            );
-                          },
+                      child: RefreshIndicator(
+                        onRefresh: () => _refreshPost(),
+                        child: PagedListView.separated(
+                          pagingController: _pagingController,
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 20,
+                          ),
+                          
+                          builderDelegate: PagedChildBuilderDelegate<PostModel>(
+                            itemBuilder: (context, item, index) {
+                              return PostCard(
+                                content: item.content,
+                                photo: item.photoUrl,
+                              );
+                            },
+                          ),
                         ),
                       ),
                     );
@@ -93,5 +96,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+  Future<void> _refreshPost() async {
+    setState(() {
+      _pagingController.refresh();
+    });
+
   }
 }

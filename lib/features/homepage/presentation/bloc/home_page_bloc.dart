@@ -1,4 +1,3 @@
-
 import 'package:capstone_project/features/homepage/data/models/post_model.dart';
 import 'package:capstone_project/features/homepage/domain/usecase/get_list_of_post_use_case.dart';
 import 'package:equatable/equatable.dart';
@@ -23,23 +22,24 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     HomePageLoadDataEvent event,
     Emitter<HomePageState> emit,
   ) async {
-    try {
-      var listOfPost =
-          await _getListOfPostUseCase.execute(size: size, page: event.pageKey);
+    var res =
+        await _getListOfPostUseCase.execute(size: size, page: event.pageKey);
 
-      if (listOfPost!.length < size) {
-        event.pagingController.appendLastPage(listOfPost);
+    res.fold((fail) {
+      emit(HomepageFailureState(
+          message: fail.message ?? "Something went wrong."));
+    }, (data) {
+      if (data!.length < size) {
+        event.pagingController.appendLastPage(data);
       } else {
-        event.pagingController.appendPage(listOfPost, event.pageKey + 1);
+        event.pagingController.appendPage(data, event.pageKey + 1);
       }
 
       emit(
         HomePageLoadedState(
-          posts: listOfPost,
+          posts: data,
         ),
       );
-    } catch (e) {
-      event.pagingController.error = e.toString();
-    }
+    });
   }
 }

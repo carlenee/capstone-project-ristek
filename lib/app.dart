@@ -1,14 +1,13 @@
+import 'package:capstone_project/features/authentication/signin/presentation/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/constants/dictionary.dart';
 import 'core/theme/_themes.dart';
-import 'features/homepage/presentation/pages/home_page.dart';
 import 'features/onboarding/presentation/bloc/user_initialization_bloc.dart';
 import 'features/onboarding/presentation/bloc/user_initialization_event.dart';
 import 'features/onboarding/presentation/bloc/user_initialization_state.dart';
-
 
 import 'services/navigation.dart';
 
@@ -45,7 +44,7 @@ class App extends StatelessWidget {
             ),
           ),
           navigatorKey: nav.navigatorKey,
-          home: const HomePage(),
+          home: const SignInPage(),
         );
       }),
     );

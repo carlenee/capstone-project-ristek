@@ -14,7 +14,7 @@ class HttpService {
   static Dio get instance {
     _client.options = BaseOptions(
       baseUrl: Endpoints.baseUrl,
-      receiveTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 10),
       sendTimeout: const Duration(seconds: 6),
     );
 

@@ -27,7 +27,7 @@ class CButton extends StatelessWidget {
     Color textColor;
     Color buttonColor;
 
-    switch (this.buttonType) {
+    switch (buttonType) {
       case CButtonType.primary:
         textColor = CapstoneColors.white;
         buttonColor = CapstoneColors.purple;

@@ -3,9 +3,9 @@ part of '_widgets.dart';
 class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
   final CreatePostBloc bloc;
-  final String? content;
+  final TextEditingController? textController;
   const CreatePostAppBar({
-    this.content,
+    this.textController,
     required this.context,
     required this.bloc,
     super.key,
@@ -45,7 +45,7 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
                   if (state is CreatePostLoaded) {
                     bloc.add(
                       UploadPostEvent(
-                          pickedImage: state.pickedImage, content: content),
+                          pickedImage: state.pickedImage, content: textController!.text),
                     );
                   }
                 },

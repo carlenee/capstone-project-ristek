@@ -27,15 +27,13 @@ class SignInCubit extends Cubit<SignInState> {
     );
 
     final res = await _signInUseCase.execute(params);
-    res.fold(
-      (fail) {
-        emit(SignInFailureState(message: fail.message??"Something went wrong."));
-      }, 
-      (data) {
-        SharedPreferencesService.saveToken(data.token);
-        emit(SignInSuccessState());
-      }
-    );
+    res.fold((fail) {
+      emit(
+          SignInFailureState(message: fail.message ?? "Something went wrong."));
+    }, (data) {
+      SharedPreferencesService.saveToken(data.token);
+      emit(SignInSuccessState());
+    });
   }
 
   void constraintFails(String message) {
