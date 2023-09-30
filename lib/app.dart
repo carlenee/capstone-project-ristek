@@ -1,3 +1,4 @@
+import 'package:capstone_project/features/authentication/signin/presentation/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,7 +35,7 @@ class App extends StatelessWidget {
           supportedLocales: const [
             Locale(CapstoneDictionary.locale),
           ],
-          title: 'Medtech',
+          title: 'Capstone',
           theme: ThemeData(
             scaffoldBackgroundColor: CapstoneColors.blackPrimary,
             fontFamily: CapstoneFontTheme.fontFamily,
@@ -45,7 +46,7 @@ class App extends StatelessWidget {
             ),
           ),
           navigatorKey: nav.navigatorKey,
-          home: const HomePage(),
+          home: const SignInPage(),
         );
       }),
     );

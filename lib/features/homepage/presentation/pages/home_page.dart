@@ -2,6 +2,7 @@ import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/homepage/data/models/post_model.dart';
 import 'package:capstone_project/features/homepage/presentation/bloc/home_page_bloc.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/_widgets.dart';
+import 'package:capstone_project/features/homepage/presentation/widgets/home_page_header.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/post_card.dart';
 import 'package:capstone_project/services/di.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   late final HomePageBloc _bloc;
   @override
   void initState() {
-   
     _bloc = get<HomePageBloc>();
     _bloc.add(
         HomePageLoadDataEvent(pagingController: _pagingController, pageKey: 1));
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           ),
           child: Column(
             children: [
-              const HomePageHeader(),
+              HomePageHeader(),
               const SizedBox(
                 height: 20,
               ),
