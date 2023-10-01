@@ -69,6 +69,7 @@ class _CommentCardState extends State<CommentCard> {
                   ),
                   const Spacer(),
                   PopupMenuButton<String>(
+                    color: CapstoneColors.greySecondary,
                     onSelected: (String choice) {
                       if (choice == 'Edit') {
                         // _showEditCommentDialog(context, widget.content);
@@ -83,7 +84,10 @@ class _CommentCardState extends State<CommentCard> {
                       return ['Edit', 'Delete'].map((String choice) {
                         return PopupMenuItem<String>(
                           value: choice,
-                          child: Text(choice),
+                          child: Text(
+                            choice,
+                            style: TextStyle(color: Colors.white),
+                          ),
                         );
                       }).toList();
                     },
@@ -149,46 +153,6 @@ class _CommentCardState extends State<CommentCard> {
     );
   }
 
-  // Function to show an edit comment dialog
-  void _showEditCommentDialog(BuildContext context, String comment) {
-    String value = '';
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Edit Comment'),
-          content: TextFormField(
-            initialValue: widget.content,
-            onChanged: (newValue) {
-              // Update the comment content as the user types
-              value = newValue;
-            },
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // Save the edited comment and close the dialog
-                widget.commentBloc.add(
-                  EditCommentEvent(widget.commentId, value, widget.postId),
-                );
-                widget.commentBloc.add(LoadCommentsEvent(widget.postId));
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                // Close the dialog without saving changes
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   // Function to show a delete comment dialog
   void _showDeleteCommentDialog(BuildContext context, String comment) {
     showDialog(
@@ -208,14 +172,14 @@ class _CommentCardState extends State<CommentCard> {
 
                 Navigator.of(context).pop();
               },
-              child: const Text('Delete'),
+              child: const Text('Delete', style: TextStyle(color: CapstoneColors.red)),
             ),
             TextButton(
               onPressed: () {
                 // Close the dialog without deleting the comment
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel', style: TextStyle(color: CapstoneColors.purple)),
             ),
           ],
         );
