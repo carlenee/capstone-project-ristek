@@ -32,7 +32,7 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "User - ${postModel!.userId}",
+                        "User - ${postModel.userId}",
                         style: CapstoneFontTheme.white,
                       ),
                       const Text(
@@ -45,9 +45,8 @@ class PostCard extends StatelessWidget {
                   IconButton(
                     disabledColor: CapstoneColors.grey,
                     onPressed: () {
-                      print("post model ${postModel.id}");
                       nav.push(EditPostPage(
-                        content: postModel.content ?? '',
+                        content: postModel.content,
                         imageUrl: postModel.photoUrl,
                         postId: postModel.id,
                       ));
@@ -61,19 +60,19 @@ class PostCard extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                postModel.content ?? '',
+                postModel.content,
                 style: CapstoneFontTheme.white,
               ),
               const SizedBox(
                 height: 20,
               ),
-              if (postModel.photoUrl != null) ...[
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: Image.network(postModel.photoUrl!),
-                ),
-              ],
+              ...[
+              SizedBox(
+                width: 200,
+                height: 200,
+                child: Image.network(postModel.photoUrl),
+              ),
+            ],
               const SizedBox(
                 height: 20,
               ),

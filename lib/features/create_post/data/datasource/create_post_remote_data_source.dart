@@ -37,9 +37,6 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
   Future<bool> editPost(UploadPostModel uploadPostModel) async {
     final model = uploadPostModel.toJson();
     final url = '${Endpoints.post}/${model['id']}';
-    print(url);
-    print(model);
-    print(model['id']);
 
     model.removeWhere((key, value) => key == 'id');
 
@@ -51,7 +48,6 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
     var formData = FormData.fromMap(model);
 
     final resp = await HttpService.patch(url, body: formData);
-    print(resp);
     if (resp.data['status'].toString() == 'true') {
       return true;
     }

@@ -1,16 +1,12 @@
-import 'dart:io';
-import 'dart:math';
 
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/create_post/presentation/bloc/bloc/create_post_bloc.dart';
 import 'package:capstone_project/features/create_post/presentation/widgets/_widgets.dart';
 import 'package:capstone_project/services/di.dart';
-import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:path_provider/path_provider.dart';
 
 class EditPostPage extends StatefulWidget {
   final String? imageUrl;
@@ -111,7 +107,7 @@ class _EditPostPageState extends State<EditPostPage> {
                                     fit: BoxFit.cover,
                                   ),
                                 )
-                              : SizedBox();
+                              : const SizedBox();
                         }
                         return const SizedBox();
                       },

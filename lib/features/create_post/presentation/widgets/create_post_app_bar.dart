@@ -49,7 +49,6 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
             return TextButton(
                 onPressed: () {
                   if (state is CreatePostLoaded) {
-                    print(postId);
                     isEdit
                         ? bloc.add(EditPostEvent(
                             postId: postId!,
