@@ -14,10 +14,12 @@ class PostCard extends StatelessWidget {
   final String postId;
   final int userId;
   final HomePageBloc bloc;
+  final bool navigate;
 
   const PostCard({
     this.content,
     this.photo,
+    this.navigate = true,
     super.key,
     required this.likeCount,
     required this.dislikeCount,
@@ -31,19 +33,21 @@ class PostCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Navigate to the post detail page when the card is tapped.
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => PostDetailPage(
-              content: content,
-              photo: photo,
-              likeCount: likeCount,
-              dislikeCount: dislikeCount,
-              postId: postId,
-              userId: userId,
-              homeBloc: bloc,
+        if (navigate) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => PostDetailPage(
+                content: content,
+                photo: photo,
+                likeCount: likeCount,
+                dislikeCount: dislikeCount,
+                postId: postId,
+                userId: userId,
+                homeBloc: bloc,
+              ),
             ),
-          ),
-        );
+          );
+        }
       },
       child: Container(
         decoration: BoxDecoration(
@@ -56,10 +60,10 @@ class PostCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: CapstoneColors.purple,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Column(
@@ -69,16 +73,16 @@ class PostCard extends StatelessWidget {
                         "User $userId",
                         style: CapstoneFontTheme.white.bodyBold,
                       ),
-                      Text(
+                      const Text(
                         "Computer Science",
                         style: CapstoneFontTheme.greySecondary,
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Icon(
+                  const Spacer(),
+                  const Icon(
                     Icons.more_vert,
-                    color: CapstoneColors.blackPrimary,
+                    color: CapstoneColors.greySecondary,
                   )
                 ],
               ),
@@ -112,19 +116,19 @@ class PostCard extends StatelessWidget {
                         type: 'LIKE', // Toggle like/unlike
                       ));
                     },
-                    child: Icon(
+                    child: const Icon(
                       UniconsLine.thumbs_up,
                       color: CapstoneColors.greySecondary,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
                     likeCount.toString(),
                     style: CapstoneFontTheme.greySecondary,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   GestureDetector(
@@ -135,12 +139,12 @@ class PostCard extends StatelessWidget {
                         type: 'DISLIKE', // Toggle dislike/undislike
                       ));
                     },
-                    child: Icon(
+                    child: const Icon(
                       UniconsLine.thumbs_down,
                       color: CapstoneColors.greySecondary,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(

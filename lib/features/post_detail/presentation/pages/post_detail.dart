@@ -62,7 +62,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
           backgroundColor: CapstoneColors.blackPrimary,
           // Add a back button in the leading position
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               // Navigate back when the back button is pressed
               Navigator.of(context).pop();
@@ -71,7 +71,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 32.0),
+            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 32.0),
             child: Column(
               children: [
                 Expanded(
@@ -85,8 +85,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         content: widget.content,
                         photo: widget.photo,
                         bloc: widget.homeBloc,
+                        navigate: false,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Center(
@@ -95,20 +96,24 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           style: CapstoneFontTheme.greySecondary.title,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       // BlocBuilder to display comments
                       BlocBuilder<CommentBloc, CommentState>(
                         builder: (context, state) {
                           if (state is CommentLoadingState) {
-                            return CircularProgressIndicator();
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(CapstoneColors.purple)
+                              )
+                            );
                           } else if (state is CommentErrorState) {
                             return Text("Error: ${state.error}");
                           } else if (state is CommentLoadedState) {
-                            return ListView.builder(
+                            return state.comments.data.isNotEmpty ? ListView.builder(
                               shrinkWrap: true,
-                              physics: ClampingScrollPhysics(),
+                              physics: const ClampingScrollPhysics(),
                               itemCount: state.comments.data.length,
                               itemBuilder: (context, index) {
                                 return Column(
@@ -120,20 +125,23 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                       content: state.comments.data[index].value,
                                       commentBloc: _commentBloc,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 12,
                                     ),
                                   ],
                                 );
                               },
-                            );
+                            ) : const Text(
+                              "There is nothing for now!", 
+                              style: CapstoneFontTheme.greySecondary, 
+                              textAlign: TextAlign.center);
                           } else if (state is CommentPostedState) {
                             // Reload comments after posting a comment
                             _commentBloc.add(LoadCommentsEvent(widget.postId));
                           } else if (state is CommentEditedState) {
                             _commentBloc.add(LoadCommentsEvent(widget.postId));
                           } else {
-                            return Text("No comments");
+                            return const Text("No comments");
                           }
                           return Container(); // You can also use SizedBox() or any other Widget you prefer
                         },
@@ -141,7 +149,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 CommentTextField(
