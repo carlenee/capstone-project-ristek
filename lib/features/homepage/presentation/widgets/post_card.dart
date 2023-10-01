@@ -1,11 +1,13 @@
+import 'package:capstone_project/app.dart';
+import 'package:capstone_project/features/create_post/presentation/pages/edit_post_page.dart';
+import 'package:capstone_project/features/homepage/data/models/post_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/_themes.dart';
 
 class PostCard extends StatelessWidget {
-  final String? content;
-  final String? photo;
-  const PostCard({this.content, this.photo, super.key});
+  final PostModel postModel;
+  const PostCard({required this.postModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,26 +20,40 @@ class PostCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: CapstoneColors.purple,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Yuda",
+                        "User - ${postModel!.userId}",
                         style: CapstoneFontTheme.white,
                       ),
-                      Text(
+                      const Text(
                         "Computer Science 2020",
                         style: CapstoneFontTheme.greySecondary,
                       ),
                     ],
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    disabledColor: CapstoneColors.grey,
+                    onPressed: () {
+                      print("post model ${postModel.id}");
+                      nav.push(EditPostPage(
+                        content: postModel.content ?? '',
+                        imageUrl: postModel.photoUrl,
+                        postId: postModel.id,
+                      ));
+                    },
+                    icon: const Icon(Icons.edit),
+                    color: CapstoneColors.purple,
                   )
                 ],
               ),
@@ -45,17 +61,17 @@ class PostCard extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                content ?? '',
+                postModel.content ?? '',
                 style: CapstoneFontTheme.white,
               ),
               const SizedBox(
                 height: 20,
               ),
-              if (photo != null) ...[
+              if (postModel.photoUrl != null) ...[
                 SizedBox(
                   width: 200,
                   height: 200,
-                  child: Image.network(photo!),
+                  child: Image.network(postModel.photoUrl!),
                 ),
               ],
               const SizedBox(

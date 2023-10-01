@@ -79,8 +79,7 @@ class _HomePageState extends State<HomePage> {
                           builderDelegate: PagedChildBuilderDelegate<PostModel>(
                             itemBuilder: (context, item, index) {
                               return PostCard(
-                                content: item.content,
-                                photo: item.photoUrl,
+                                postModel: item,
                               );
                             },
                           ),

@@ -4,4 +4,6 @@ abstract class CreatePostRepository {
   Future<bool> uploadPost(
     UploadPostModel uploadPostModel,
   );
+
+  Future<bool> editPost(UploadPostModel uploadPostModel);
 }

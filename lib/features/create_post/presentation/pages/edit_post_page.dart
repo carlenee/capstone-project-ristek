@@ -1,27 +1,37 @@
-import 'package:capstone_project/core/bases/enum/button_type.dart';
-import 'package:capstone_project/core/bases/widgets/atoms/button.dart';
+import 'dart:io';
+import 'dart:math';
+
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/create_post/presentation/bloc/bloc/create_post_bloc.dart';
 import 'package:capstone_project/features/create_post/presentation/widgets/_widgets.dart';
 import 'package:capstone_project/services/di.dart';
+import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreatePostPage extends StatefulWidget {
-  const CreatePostPage({super.key});
+import 'package:path_provider/path_provider.dart';
+
+class EditPostPage extends StatefulWidget {
+  final String? imageUrl;
+  final String? content;
+  final String postId;
+  const EditPostPage(
+      {this.imageUrl, this.content, required this.postId, super.key});
 
   @override
-  State<CreatePostPage> createState() => _CreatePostPageState();
+  State<EditPostPage> createState() => _EditPostPageState();
 }
 
-class _CreatePostPageState extends State<CreatePostPage> {
+class _EditPostPageState extends State<EditPostPage> {
   final TextEditingController _textContentController = TextEditingController();
   late final CreatePostBloc _bloc;
 
   @override
   void initState() {
     _bloc = get<CreatePostBloc>();
+    _textContentController.text = widget.content ?? '';
+
     super.initState();
   }
 
@@ -36,9 +46,12 @@ class _CreatePostPageState extends State<CreatePostPage> {
     return SafeArea(
       child: Scaffold(
         appBar: CreatePostAppBar(
-            context: context,
-            bloc: _bloc,
-            textController: _textContentController),
+          context: context,
+          bloc: _bloc,
+          textController: _textContentController,
+          isEdit: true,
+          postId: widget.postId,
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: BlocBuilder<CreatePostBloc, CreatePostState>(
@@ -88,6 +101,17 @@ class _CreatePostPageState extends State<CreatePostPage> {
                               ),
                             );
                           }
+                          return widget.imageUrl != null
+                              ? SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 3 / 4,
+                                  height: 200,
+                                  child: Image.network(
+                                    widget.imageUrl!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : SizedBox();
                         }
                         return const SizedBox();
                       },
@@ -101,19 +125,12 @@ class _CreatePostPageState extends State<CreatePostPage> {
                     const SizedBox(
                       height: 48,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 2 / 3,
-                      child: Row(
-                        children: [
-                          CButton(
-                            text: 'Add a photo ',
-                            buttonType: CButtonType.primary,
-                            onTap: () =>
-                                OptionBottomSheet.showObjectBotttomSheet(
-                                    context: context, bloc: _bloc),
-                          ),
-                        ],
-                      ),
+                    AddPhotoButton(
+                      text: 'Add a photo',
+                      onPressed: () {
+                        OptionBottomSheet.showObjectBotttomSheet(
+                            context: context, bloc: _bloc);
+                      },
                     )
                   ],
                 );

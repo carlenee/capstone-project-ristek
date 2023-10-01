@@ -23,6 +23,7 @@ mixin _$UploadPostModel {
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get picture => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $UploadPostModelCopyWith<$Res> {
           UploadPostModel value, $Res Function(UploadPostModel) then) =
       _$UploadPostModelCopyWithImpl<$Res, UploadPostModel>;
   @useResult
-  $Res call({String title, String content, String picture});
+  $Res call({String title, String content, String picture, String? id});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$UploadPostModelCopyWithImpl<$Res, $Val extends UploadPostModel>
     Object? title = null,
     Object? content = null,
     Object? picture = null,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -69,6 +71,10 @@ class _$UploadPostModelCopyWithImpl<$Res, $Val extends UploadPostModel>
           ? _value.picture
           : picture // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$UploadPostModelImplCopyWith<$Res>
       __$$UploadPostModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String content, String picture});
+  $Res call({String title, String content, String picture, String? id});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$UploadPostModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? content = null,
     Object? picture = null,
+    Object? id = freezed,
   }) {
     return _then(_$UploadPostModelImpl(
       title: null == title
@@ -112,6 +119,10 @@ class __$$UploadPostModelImplCopyWithImpl<$Res>
           ? _value.picture
           : picture // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -120,7 +131,10 @@ class __$$UploadPostModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UploadPostModelImpl implements _UploadPostModel {
   const _$UploadPostModelImpl(
-      {required this.title, required this.content, required this.picture});
+      {required this.title,
+      required this.content,
+      required this.picture,
+      this.id});
 
   factory _$UploadPostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UploadPostModelImplFromJson(json);
@@ -131,10 +145,12 @@ class _$UploadPostModelImpl implements _UploadPostModel {
   final String content;
   @override
   final String picture;
+  @override
+  final String? id;
 
   @override
   String toString() {
-    return 'UploadPostModel(title: $title, content: $content, picture: $picture)';
+    return 'UploadPostModel(title: $title, content: $content, picture: $picture, id: $id)';
   }
 
   @override
@@ -144,12 +160,13 @@ class _$UploadPostModelImpl implements _UploadPostModel {
             other is _$UploadPostModelImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.picture, picture) || other.picture == picture));
+            (identical(other.picture, picture) || other.picture == picture) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, content, picture);
+  int get hashCode => Object.hash(runtimeType, title, content, picture, id);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +187,8 @@ abstract class _UploadPostModel implements UploadPostModel {
   const factory _UploadPostModel(
       {required final String title,
       required final String content,
-      required final String picture}) = _$UploadPostModelImpl;
+      required final String picture,
+      final String? id}) = _$UploadPostModelImpl;
 
   factory _UploadPostModel.fromJson(Map<String, dynamic> json) =
       _$UploadPostModelImpl.fromJson;
@@ -181,6 +199,8 @@ abstract class _UploadPostModel implements UploadPostModel {
   String get content;
   @override
   String get picture;
+  @override
+  String? get id;
   @override
   @JsonKey(ignore: true)
   _$$UploadPostModelImplCopyWith<_$UploadPostModelImpl> get copyWith =>

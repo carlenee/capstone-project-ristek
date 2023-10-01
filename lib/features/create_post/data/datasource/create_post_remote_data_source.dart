@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 
 abstract class CreatePostRemoteDataSource {
   Future<bool> uploadPost(UploadPostModel uploadPostModel);
+  Future<bool> editPost(UploadPostModel uploadPostModel);
 }
 
 @Injectable(as: CreatePostRemoteDataSource)
@@ -17,7 +18,6 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
   Future<bool> uploadPost(UploadPostModel uploadPostModel) async {
     const url = Endpoints.post;
     final model = uploadPostModel.toJson();
-    
 
     model['picture'] = await MultipartFile.fromFile(
       uploadPostModel.picture,
@@ -25,9 +25,36 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
       contentType: MediaType("image", "jpeg"),
     );
 
+    model.removeWhere((key, value) => key == 'id');
+
     var formData = FormData.fromMap(model);
     final resp = await HttpService.post(url, body: formData);
 
     return resp.data['status'];
+  }
+
+  @override
+  Future<bool> editPost(UploadPostModel uploadPostModel) async {
+    final model = uploadPostModel.toJson();
+    final url = '${Endpoints.post}/${model['id']}';
+    print(url);
+    print(model);
+    print(model['id']);
+
+    model.removeWhere((key, value) => key == 'id');
+
+    model['picture'] = await MultipartFile.fromFile(
+      uploadPostModel.picture,
+      filename: uploadPostModel.picture.split('/').last,
+      contentType: MediaType("image", "jpeg"),
+    );
+    var formData = FormData.fromMap(model);
+
+    final resp = await HttpService.patch(url, body: formData);
+    print(resp);
+    if (resp.data['status'].toString() == 'true') {
+      return true;
+    }
+    return false;
   }
 }

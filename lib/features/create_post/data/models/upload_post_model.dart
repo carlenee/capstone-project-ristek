@@ -10,6 +10,7 @@ class UploadPostModel with _$UploadPostModel {
     required String title,
     required String content,
     required String picture,
+    String? id,
   }) = _UploadPostModel;
 
   factory UploadPostModel.fromJson(Map<String, Object?> json) =>

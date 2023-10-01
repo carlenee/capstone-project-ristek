@@ -26,11 +26,7 @@ class HomePageHeader extends StatelessWidget {
         ),
         IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const CreatePostPage(),
-                ),
-              );
+              nav.push(const CreatePostPage());
             },
             icon: const Icon(
               Icons.add_rounded,
