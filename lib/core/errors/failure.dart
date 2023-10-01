@@ -17,7 +17,7 @@ abstract class Failure implements Exception {
 }
 
 class DioFailure implements Exception {
-  DioFailure.fromDioError(DioError dioError) {
+  DioFailure.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
         message = 'Connection timeout with API server';
@@ -124,3 +124,11 @@ class UnAuthorizeFailure extends Failure {
 class ParseFailure extends Failure {}
 
 class EmptyFailure extends Failure {}
+
+class Fail implements Exception {
+  Fail({
+    required this.message,
+  });
+
+  String message;
+}

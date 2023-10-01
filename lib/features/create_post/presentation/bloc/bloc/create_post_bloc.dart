@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:capstone_project/features/create_post/data/models/upload_post_model.dart';
 import 'package:capstone_project/features/create_post/domain/usecase/upload_post_use_case.dart';
 import 'package:equatable/equatable.dart';
@@ -60,7 +59,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
       emit(CreatePostLoading());
       final resp = await _uploadPostUseCase.execute(UploadPostModel(
           title: 'title',
-          content: event.content ?? '',
+          content: event.content == '' ? 'No Caption' : event.content!,
           picture: event.pickedImage != null ? event.pickedImage!.path : ''));
 
       if (resp == true) {

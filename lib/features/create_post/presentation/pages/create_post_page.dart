@@ -1,4 +1,3 @@
-
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/create_post/presentation/bloc/bloc/create_post_bloc.dart';
 import 'package:capstone_project/features/create_post/presentation/widgets/_widgets.dart';
@@ -25,13 +24,19 @@ class _CreatePostPageState extends State<CreatePostPage> {
   }
 
   @override
+  void dispose() {
+    _textContentController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: CreatePostAppBar(
             context: context,
             bloc: _bloc,
-            content: _textContentController.text),
+            textController: _textContentController),
         body: SingleChildScrollView(
           child: Center(
             child: BlocBuilder<CreatePostBloc, CreatePostState>(
@@ -52,7 +57,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                     style: CapstoneFontTheme.greySecondaryMedium,
                   ));
                 }
-                
+
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

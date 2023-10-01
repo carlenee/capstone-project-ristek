@@ -42,7 +42,7 @@ class AuthenticationRemoteDataSourceImpl
         bio: resp.data["data"]["data"]["bio"] ?? "",
         email: resp.data["data"]["data"]["email"] ?? "",
         photoUrl: resp.data["data"]["data"]["photoUrl"] ?? "",
-        photoPublicId: resp.data["data"]["data"]["photoPublicId"] ?? "",
+        photoPublicId: resp.data["data"]["data"]["photoPubli"] ?? "",
       ));
     }
   }

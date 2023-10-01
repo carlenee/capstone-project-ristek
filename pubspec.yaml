@@ -54,6 +54,10 @@ dependencies:
   json_serializable: ^6.7.1
   shared_preferences: ^2.2.1
   timeago: ^3.5.0
+  unicons: ^2.1.1
+  path: ^1.8.0
+
+
 
 
 dev_dependencies:
@@ -61,9 +65,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  freezed: ^2.3.4
   injectable_generator: ^2.1.5
-  json_serializable: ^6.6.2
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

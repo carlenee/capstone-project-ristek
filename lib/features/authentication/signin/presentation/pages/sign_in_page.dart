@@ -1,5 +1,4 @@
 import 'package:capstone_project/features/homepage/presentation/pages/home_page.dart';
-import 'package:capstone_project/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
         bloc: _cubit,
         listener: (context, state) {
           if (state is SignInSuccessState) {
-            nav.pushReplacement(HomePage());
+            nav.pushReplacement(const HomePage());
           }
         },
         builder: (context, state) {
@@ -121,14 +120,9 @@ class _SignInPageState extends State<SignInPage> {
                             return;
                           }
 
-                          print("Calling backend to sign in...");
-
                           await _cubit.signIn(
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                          );
-
-                          print("Backend call completed.");
+                              email: _emailController.text,
+                              password: _passwordController.text);
                         },
                       ),
                     ],

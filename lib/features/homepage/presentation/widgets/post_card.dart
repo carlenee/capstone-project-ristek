@@ -1,24 +1,60 @@
+import 'package:capstone_project/core/extensions/text_style_extensions.dart';
+import 'package:capstone_project/features/homepage/presentation/bloc/home_page_bloc.dart';
+import 'package:capstone_project/features/post_detail/presentation/pages/post_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:unicons/unicons.dart';
 
 import '../../../../core/theme/_themes.dart';
 
 class PostCard extends StatelessWidget {
   final String? content;
   final String? photo;
-  const PostCard({this.content, this.photo, super.key});
+  final int likeCount;
+  final int dislikeCount;
+  final String postId;
+  final int userId;
+  final HomePageBloc bloc;
+
+  const PostCard({
+    this.content,
+    this.photo,
+    super.key,
+    required this.likeCount,
+    required this.dislikeCount,
+    required this.postId,
+    required this.userId,
+    required this.bloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: CapstoneColors.grey,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the post detail page when the card is tapped.
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PostDetailPage(
+              content: content,
+              photo: photo,
+              likeCount: likeCount,
+              dislikeCount: dislikeCount,
+              postId: postId,
+              userId: userId,
+              homeBloc: bloc,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: CapstoneColors.grey,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
                   CircleAvatar(
                     backgroundColor: CapstoneColors.purple,
@@ -30,14 +66,19 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Yuda",
-                        style: CapstoneFontTheme.white,
+                        "User $userId",
+                        style: CapstoneFontTheme.white.bodyBold,
                       ),
                       Text(
-                        "Computer Science 2020",
+                        "Computer Science",
                         style: CapstoneFontTheme.greySecondary,
                       ),
                     ],
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.more_vert,
+                    color: CapstoneColors.blackPrimary,
                   )
                 ],
               ),
@@ -61,37 +102,57 @@ class PostCard extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 children: [
-                  Icon(
-                    Icons.favorite_outline_rounded,
-                    color: CapstoneColors.greySecondary,
+                  GestureDetector(
+                    onTap: () {
+                      // Handle liking the post
+                      bloc.add(LikePostEvent(
+                        postId: postId,
+                        type: 'LIKE', // Toggle like/unlike
+                      ));
+                    },
+                    child: Icon(
+                      UniconsLine.thumbs_up,
+                      color: CapstoneColors.greySecondary,
+                    ),
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   Text(
-                    "99",
+                    likeCount.toString(),
                     style: CapstoneFontTheme.greySecondary,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(
-                    Icons.chat_bubble_outline_rounded,
-                    color: CapstoneColors.greySecondary,
+                  GestureDetector(
+                    onTap: () {
+                      // Handle disliking the post
+                      bloc.add(LikePostEvent(
+                        postId: postId,
+                        type: 'DISLIKE', // Toggle dislike/undislike
+                      ));
+                    },
+                    child: Icon(
+                      UniconsLine.thumbs_down,
+                      color: CapstoneColors.greySecondary,
+                    ),
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   Text(
-                    "99",
+                    dislikeCount.toString(),
                     style: CapstoneFontTheme.greySecondary,
                   ),
                 ],
               )
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

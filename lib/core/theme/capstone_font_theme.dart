@@ -1,11 +1,13 @@
 part of '_themes.dart';
 
 class CapstoneFontTheme {
-  static final fontFamily = GoogleFonts.inter().fontFamily;
+  static final fontFamily = GoogleFonts.lexend().fontFamily;
 
   static const black = TextStyle(color: CapstoneColors.blackPrimary);
 
   static const greySecondary = TextStyle(color: CapstoneColors.greySecondary);
+
+  static const red = TextStyle(color: CapstoneColors.red);
 
   static final greySecondaryHeader = TextStyle(
       color: CapstoneColors.greySecondary,

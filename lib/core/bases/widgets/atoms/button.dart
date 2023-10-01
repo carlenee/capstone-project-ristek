@@ -1,3 +1,4 @@
+import 'package:capstone_project/core/extensions/text_style_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/_themes.dart';
@@ -27,7 +28,7 @@ class CButton extends StatelessWidget {
     Color textColor;
     Color buttonColor;
 
-    switch (this.buttonType) {
+    switch (buttonType) {
       case CButtonType.primary:
         textColor = CapstoneColors.white;
         buttonColor = CapstoneColors.purple;
@@ -70,4 +71,115 @@ class CButton extends StatelessWidget {
       )
     );
   }
+}
+
+abstract class CapstoneTextButton extends StatelessWidget {
+  const CapstoneTextButton({
+    super.key,
+    required this.onTap,
+    required this.buttonColor,
+    required this.textStyle,
+    required this.text,
+    this.isLoading,
+    this.icon,
+  });
+
+  final Function() onTap;
+  final Color buttonColor;
+  final TextStyle textStyle;
+  final String text;
+  final bool? isLoading;
+  final Widget? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: buttonColor,
+        child: InkWell(
+          onTap: onTap,
+          child: SizedBox(
+            height: 56,
+            width: double.infinity,
+            child: Center(
+              child: isLoading != null && isLoading!
+                  ? const SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 6,
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(CapstoneColors.white),
+                      ),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (icon != null)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 6),
+                            child: icon!,
+                          ),
+                        Text(
+                          text,
+                          style: textStyle.button,
+                        ),
+                      ],
+                    ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CapstonPurpleButtonPrimary extends CapstoneTextButton {
+  const CapstonPurpleButtonPrimary({
+    super.key,
+    required Function() onTap,
+    required String text,
+    bool? isLoading,
+    bool? isDisabled,
+  }) : super(
+          onTap: onTap,
+          buttonColor: isDisabled != null && isDisabled
+              ? CapstoneColors.purple50
+              : CapstoneColors.purple,
+          textStyle: CapstoneFontTheme.white,
+          text: text,
+          isLoading: isLoading,
+        );
+}
+
+class CapstonRedButtonPrimary extends CapstoneTextButton {
+  const CapstonRedButtonPrimary({
+    super.key,
+    required Function() onTap,
+    required String text,
+    bool? isLoading,
+    bool? isDisabled,
+  }) : super(
+          onTap: onTap,
+          buttonColor: isDisabled != null && isDisabled
+              ? CapstoneColors.purple50
+              : CapstoneColors.purple,
+          textStyle: CapstoneFontTheme.white,
+          text: text,
+          isLoading: isLoading,
+        );
+}
+
+class CapstoneRedButtonPrimary extends CapstoneTextButton {
+  const CapstoneRedButtonPrimary({
+    super.key,
+    required Function() onTap,
+    required String text,
+  }) : super(
+          onTap: onTap,
+          buttonColor: CapstoneColors.red,
+          textStyle: CapstoneFontTheme.white,
+          text: text,
+        );
 }
