@@ -1,5 +1,5 @@
-
 import 'package:capstone_project/features/homepage/data/models/post_model.dart';
+import 'package:capstone_project/features/homepage/data/repositories/home_page_repository_impl.dart';
 import 'package:capstone_project/features/homepage/domain/usecase/get_list_of_post_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,29 +17,46 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
   HomePageBloc(this._getListOfPostUseCase) : super(HomePageInitial()) {
     on<HomePageLoadDataEvent>(_loadPost);
+    on<LikePostEvent>(_likePost);
+
   }
 
   void _loadPost(
     HomePageLoadDataEvent event,
     Emitter<HomePageState> emit,
   ) async {
-    try {
-      var listOfPost =
-          await _getListOfPostUseCase.execute(size: size, page: event.pageKey);
+    var res =
+        await _getListOfPostUseCase.execute(size: size, page: event.pageKey);
 
-      if (listOfPost!.length < size) {
-        event.pagingController.appendLastPage(listOfPost);
+    res.fold((fail) {
+      emit(HomepageFailureState(
+          message: fail.message ?? "Something went wrong."));
+    }, (data) {
+      if (data!.length < size) {
+        event.pagingController.appendLastPage(data);
       } else {
-        event.pagingController.appendPage(listOfPost, event.pageKey + 1);
+        event.pagingController.appendPage(data, event.pageKey + 1);
       }
 
       emit(
         HomePageLoadedState(
-          posts: listOfPost,
+          posts: data,
         ),
       );
-    } catch (e) {
-      event.pagingController.error = e.toString();
-    }
+    });
   }
+
+  Future<void> _likePost(
+  LikePostEvent event,
+  Emitter<HomePageState> emit,
+) async {
+  emit(HomePageLoadingState());
+
+  try {
+    await HomePageRepositoryImpl.likePost(event.postId, event.type);
+    emit(HomePageSuccessState()); 
+  } catch (error) {
+    emit(const HomepageFailureState());
+  }
+}
 }

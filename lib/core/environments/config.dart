@@ -5,7 +5,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../../services/di.dart';
 import '../../services/shared_preferences.dart';
 import '../constants/dictionary.dart';
 

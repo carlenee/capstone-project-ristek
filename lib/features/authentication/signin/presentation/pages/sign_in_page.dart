@@ -1,4 +1,4 @@
-import 'package:capstone_project/features/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:capstone_project/features/homepage/presentation/pages/home_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,10 +29,10 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     _cubit = get<SignInCubit>();
-    
+
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return CScaffold(
@@ -41,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
         bloc: _cubit,
         listener: (context, state) {
           if (state is SignInSuccessState) {
-            nav.pushReplacement(const OnboardingPage());
+            nav.pushReplacement(const HomePage());
           }
         },
         builder: (context, state) {
@@ -61,26 +61,35 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  state is SignInFailureState ? Center(
-                    heightFactor: 2,
-                    child: Text(
-                      state.message,
-                      style: CapstoneFontTheme.redSubtitle(),
-                    ),
-                  ) : const Offstage(),
+                  state is SignInFailureState
+                      ? Center(
+                          heightFactor: 2,
+                          child: Text(
+                            state.message,
+                            style: CapstoneFontTheme.redSubtitle(),
+                          ),
+                        )
+                      : const Offstage(),
                   Text(
-                    "Email", 
-                    style: CapstoneFontTheme.whiteSubtitle(), 
+                    "Email",
+                    style: CapstoneFontTheme.whiteSubtitle(),
                   ),
                   const SizedBox(height: 8),
-                  CTextField(title: "Email", hint: "Masukkan email", controller: _emailController),
+                  CTextField(
+                      title: "Email",
+                      hint: "Masukkan email",
+                      controller: _emailController),
                   const SizedBox(height: 16),
                   Text(
-                    "Password", 
-                    style: CapstoneFontTheme.whiteSubtitle(), 
+                    "Password",
+                    style: CapstoneFontTheme.whiteSubtitle(),
                   ),
                   const SizedBox(height: 8),
-                  CTextField(title: "Password", hint: "Masukkan password", controller: _passwordController, inputType: CTextFieldType.password),
+                  CTextField(
+                      title: "Password",
+                      hint: "Masukkan password",
+                      controller: _passwordController,
+                      inputType: CTextFieldType.password),
                   const SizedBox(height: 32),
                   RichText(
                     text: TextSpan(
@@ -91,7 +100,8 @@ class _SignInPageState extends State<SignInPage> {
                           text: ' Buat Akun',
                           style: CapstoneFontTheme.whiteCaptionLink(),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => nav.pushReplacement(const SignUpPage()),
+                            ..onTap =
+                                () => nav.pushReplacement(const SignUpPage()),
                         ),
                       ],
                     ),
@@ -104,15 +114,15 @@ class _SignInPageState extends State<SignInPage> {
                         isLoading: state is SignInLoadingState,
                         onTap: () async {
                           if (_emailController.text.isEmpty ||
-                            _passwordController.text.isEmpty) {
+                              _passwordController.text.isEmpty) {
                             _cubit.constraintFails(
-                              "Mohon semua data di-isi terlebih dahulu!");
+                                "Mohon semua data di-isi terlebih dahulu!");
                             return;
                           }
 
                           await _cubit.signIn(
-                            email: _emailController.text, 
-                            password: _passwordController.text);
+                              email: _emailController.text,
+                              password: _passwordController.text);
                         },
                       ),
                     ],

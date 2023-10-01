@@ -73,3 +73,32 @@ class SharedPreferencesService {
     return _secure!.delete(key: PreferencesKeys.cred);
   }
 }
+
+
+class SharedPreferencesUtil {
+  static Future<void> updateUserPreferences({
+    String? firstName,
+    String? lastName,
+    String? bio,
+    String? profileImageUrl,
+  }) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    if (firstName != null) {
+      sharedPreferences.setString('firstName', firstName);
+    }
+
+    if (lastName != null) {
+      sharedPreferences.setString('lastName', lastName);
+    }
+
+    if (bio != null) {
+      sharedPreferences.setString('bio', bio);
+    }
+
+    if (profileImageUrl != null) {
+      sharedPreferences.setString('profileImageUrl', profileImageUrl);
+    }
+  }
+}
+

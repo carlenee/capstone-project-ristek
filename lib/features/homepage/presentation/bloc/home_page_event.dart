@@ -15,3 +15,13 @@ class HomePageLoadDataEvent extends HomePageEvent {
   @override
   List<Object> get props => [pagingController, pageKey];
 }
+
+class LikePostEvent extends HomePageEvent {
+  final String postId;
+  final String type;
+
+  const LikePostEvent({
+    required this.postId,
+    required this.type,
+  });
+}

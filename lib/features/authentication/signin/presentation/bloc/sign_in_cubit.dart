@@ -2,6 +2,7 @@ import 'package:capstone_project/services/shared_preferences.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/use_cases/sign_in_params.dart';
 import '../../domain/use_cases/sign_in_use_case.dart';
@@ -29,12 +30,18 @@ class SignInCubit extends Cubit<SignInState> {
     final res = await _signInUseCase.execute(params);
     res.fold(
       (fail) {
-        emit(SignInFailureState(message: fail.message??"Something went wrong."));
-      }, 
-      (data) {
+        emit(SignInFailureState(
+            message: fail.message ?? "Something went wrong."));
+      },
+      (data) async {
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('firstName', data.firstName);
+        prefs.setString('lastName', data.lastName);
+        prefs.setString('bio', data.bio ?? "");
         SharedPreferencesService.saveToken(data.token);
+
         emit(SignInSuccessState());
-      }
+      },
     );
   }
 
