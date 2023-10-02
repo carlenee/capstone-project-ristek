@@ -33,7 +33,7 @@ class App extends StatelessWidget {
           supportedLocales: const [
             Locale(CapstoneDictionary.locale),
           ],
-          title: 'Medtech',
+          title: 'Capstone',
           theme: ThemeData(
             scaffoldBackgroundColor: CapstoneColors.blackPrimary,
             fontFamily: CapstoneFontTheme.fontFamily,

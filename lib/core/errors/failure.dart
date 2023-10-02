@@ -124,3 +124,11 @@ class UnAuthorizeFailure extends Failure {
 class ParseFailure extends Failure {}
 
 class EmptyFailure extends Failure {}
+
+class Fail implements Exception {
+  Fail({
+    required this.message,
+  });
+
+  String message;
+}

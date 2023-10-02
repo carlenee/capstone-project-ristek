@@ -1,4 +1,5 @@
 import 'package:capstone_project/features/homepage/data/models/post_model.dart';
+import 'package:capstone_project/features/homepage/data/repositories/home_page_repository_impl.dart';
 import 'package:capstone_project/features/homepage/domain/usecase/get_list_of_post_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
   HomePageBloc(this._getListOfPostUseCase) : super(HomePageInitial()) {
     on<HomePageLoadDataEvent>(_loadPost);
+    on<LikePostEvent>(_likePost);
+
   }
 
   void _loadPost(
@@ -42,4 +45,18 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       );
     });
   }
+
+  Future<void> _likePost(
+  LikePostEvent event,
+  Emitter<HomePageState> emit,
+) async {
+  emit(HomePageLoadingState());
+
+  try {
+    await HomePageRepositoryImpl.likePost(event.postId, event.type);
+    emit(HomePageSuccessState()); 
+  } catch (error) {
+    emit(const HomepageFailureState());
+  }
+}
 }

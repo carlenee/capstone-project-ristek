@@ -19,6 +19,8 @@ final class HomePageLoadedState extends HomePageState {
   const HomePageLoadedState({required this.posts, this.scrollPosition = 0});
 }
 
+final class HomePageSuccessState extends HomePageState {}
+
 final class HomepageFailureState extends HomePageState {
   final String? message;
 

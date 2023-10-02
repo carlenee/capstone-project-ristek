@@ -1,22 +1,60 @@
-import 'package:capstone_project/app.dart';
-import 'package:capstone_project/features/create_post/presentation/pages/edit_post_page.dart';
-import 'package:capstone_project/features/homepage/data/models/post_model.dart';
+import 'package:capstone_project/core/extensions/text_style_extensions.dart';
+import 'package:capstone_project/features/homepage/presentation/bloc/home_page_bloc.dart';
+import 'package:capstone_project/features/post_detail/presentation/pages/post_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:unicons/unicons.dart';
 
 import '../../../../core/theme/_themes.dart';
 
 class PostCard extends StatelessWidget {
-  final PostModel postModel;
-  const PostCard({required this.postModel, super.key});
+  final String? content;
+  final String? photo;
+  final int likeCount;
+  final int dislikeCount;
+  final String postId;
+  final int userId;
+  final HomePageBloc bloc;
+  final bool navigate;
+
+  const PostCard({
+    this.content,
+    this.photo,
+    this.navigate = true,
+    super.key,
+    required this.likeCount,
+    required this.dislikeCount,
+    required this.postId,
+    required this.userId,
+    required this.bloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: CapstoneColors.grey,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the post detail page when the card is tapped.
+        if (navigate) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => PostDetailPage(
+                content: content,
+                photo: photo,
+                likeCount: likeCount,
+                dislikeCount: dislikeCount,
+                postId: postId,
+                userId: userId,
+                homeBloc: bloc,
+              ),
+            ),
+          );
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: CapstoneColors.grey,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             children: [
@@ -32,27 +70,14 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "User - ${postModel.userId}",
+                        "Yuda",
                         style: CapstoneFontTheme.white,
                       ),
-                      const Text(
+                      Text(
                         "Computer Science 2020",
                         style: CapstoneFontTheme.greySecondary,
                       ),
                     ],
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    disabledColor: CapstoneColors.grey,
-                    onPressed: () {
-                      nav.push(EditPostPage(
-                        content: postModel.content,
-                        imageUrl: postModel.photoUrl,
-                        postId: postModel.id,
-                      ));
-                    },
-                    icon: const Icon(Icons.edit),
-                    color: CapstoneColors.purple,
                   )
                 ],
               ),
@@ -76,37 +101,57 @@ class PostCard extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 children: [
-                  Icon(
-                    Icons.favorite_outline_rounded,
-                    color: CapstoneColors.greySecondary,
+                  GestureDetector(
+                    onTap: () {
+                      // Handle liking the post
+                      bloc.add(LikePostEvent(
+                        postId: postId,
+                        type: 'LIKE', // Toggle like/unlike
+                      ));
+                    },
+                    child: const Icon(
+                      UniconsLine.thumbs_up,
+                      color: CapstoneColors.greySecondary,
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
-                    "99",
+                    likeCount.toString(),
                     style: CapstoneFontTheme.greySecondary,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Icon(
-                    Icons.chat_bubble_outline_rounded,
-                    color: CapstoneColors.greySecondary,
+                  GestureDetector(
+                    onTap: () {
+                      // Handle disliking the post
+                      bloc.add(LikePostEvent(
+                        postId: postId,
+                        type: 'DISLIKE', // Toggle dislike/undislike
+                      ));
+                    },
+                    child: const Icon(
+                      UniconsLine.thumbs_down,
+                      color: CapstoneColors.greySecondary,
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
-                    "99",
+                    dislikeCount.toString(),
                     style: CapstoneFontTheme.greySecondary,
                   ),
                 ],
               )
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

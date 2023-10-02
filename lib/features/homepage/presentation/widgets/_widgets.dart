@@ -3,5 +3,3 @@ import 'package:flutter/material.dart';
 import '../../../../../app.dart';
 
 import '../../../../core/theme/_themes.dart';
-
-part 'home_page_header.dart';
