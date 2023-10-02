@@ -5,7 +5,7 @@ class Endpoints {
   static const post = '$baseUrl/api/post';
   static const editProfile = '$baseUrl/api/user';
   static const defaultProfile =
-      'https://drive.google.com/file/d/1LVYy96Pxryf7Oia2UPpr9ihApZV1MP1e/view?usp=drive_link';
+      'https://images.nightcafe.studio//assets/profile.png';
   static const getComments = '$baseUrl/api/comment?post_id=';
   static const editComments = '$baseUrl/api/comment/';
   static const postComment = '$baseUrl/api/comment';

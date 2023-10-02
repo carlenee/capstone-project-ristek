@@ -11,14 +11,18 @@ class CTextField extends StatefulWidget {
   final CTextFieldType inputType;
   final InputFieldState inputState;
   final void Function(String)? onChanged;
+  final void Function()? onComplete;
+  final bool infiniteLines;
 
   const CTextField({
     required this.title,
     required this.hint,
     required this.controller,
     this.onChanged,
+    this.infiniteLines = false,
     this.inputType = CTextFieldType.regular,
     this.inputState = InputFieldState.enabled,
+    this.onComplete,
     super.key
   });
 
@@ -87,6 +91,8 @@ class _CTextFieldState extends State<CTextField> {
                         fillColor: Colors.transparent,
                         // hintStyle: FontTheme.greyTextMedium(),
                       ),
+                      maxLines: widget.infiniteLines ? null : 1,
+                      onEditingComplete: widget.onComplete,
                       obscureText:
                           widget.inputType == CTextFieldType.password && _isHidden,
                     ),
