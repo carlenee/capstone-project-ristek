@@ -1,16 +1,42 @@
 # capstone_project
 
-A new Flutter project.
+Developer:
+- Arvin
+- Carlene 
+- Daffa
 
-## Getting Started
+## Pembagian Tugas
 
-This project is a starting point for a Flutter application.
+- Arvin :
+- Carlene : Comment (Post, Update, Delete), Like (Post), Profile (Get & Edit)
+- Daffa :
 
-A few resources to get you started if this is your first Flutter project:
+## HomePage
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Post Detail Page
+![Image Alt Text](assets/images/detail_page.png)
+
+## Post Comment
+![Image Alt Text](assets/images/enter_comment.png)
+![Image Alt Text](assets/images/comment_entered.png)
+
+## Comment Options
+![Image Alt Text](assets/images/comment_options.png)
+
+## Comment Edit
+![Image Alt Text](assets/images/edit_comment.png)
+![Image Alt Text](assets/images/comment_edited.png)
+
+## Comment Delete
+![Image Alt Text](assets/images/delete_comment.png)
+![Image Alt Text](assets/images/detail_page.png)
+
+## Like Post
+![Image Alt Text](assets/images/post_liked.png)
+
+
+
+
+
+
