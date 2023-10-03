@@ -10,6 +10,8 @@ import 'package:injectable/injectable.dart';
 abstract class HomePageRemoteDataSource {
   Future<Either<Failure, List<PostModel>?>> getListOfPost(
       {int size = 5, required int page});
+
+  Future<Either<Failure, bool>> deletePost(String postId);
 }
 
 @Injectable(as: HomePageRemoteDataSource)
@@ -39,12 +41,24 @@ class HomePageRemoteDataSourceImpl implements HomePageRemoteDataSource {
     final Map<String, dynamic> requestData = {'likeType': type};
     final response =
         await HttpService.post(url, body: json.encode(requestData));
-    print(response.toString());
     if (response.statusCode == 200) {
       return response.data["message"];
     } else {
       final errorMessage = response.data['message'] ?? 'Error liking comment';
       throw Exception(errorMessage);
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> deletePost(String postId) async {
+    final url = '${Endpoints.post}/$postId';
+
+    final resp = await HttpService.delete(url);
+
+    if (resp.data['status'] == true) {
+      return const Right(true);
+    } else {
+      return Left(GeneralFailure(message: "Delete post Failed"));
     }
   }
 }

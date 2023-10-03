@@ -21,7 +21,7 @@ class CapstoneTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: 312,
           height: 92,
           child: Column(
@@ -53,7 +53,7 @@ class CapstoneTextField extends StatelessWidget {
                         controller: controller,
                         decoration: InputDecoration(
                           hintText: hintText,
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             color: Colors.black,
                           ),
                           border: InputBorder.none,
@@ -90,7 +90,7 @@ class CommentTextField extends StatelessWidget {
       create: (context) => commentBloc,
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: 312,
             height: 92,
             child: Column(
@@ -120,7 +120,7 @@ class CommentTextField extends StatelessWidget {
                           controller: controller,
                           decoration: InputDecoration(
                             hintText: hintText,
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               color: Colors.black,
                             ),
                             border: InputBorder.none,
@@ -131,8 +131,6 @@ class CommentTextField extends StatelessWidget {
                         onTap: () {
                           // Get the text from the controller
                           final commentText = controller.text;
-                          print('Comment Text: $commentText');
-                          print('Post ID: $postId');
 
                           if (commentText.isNotEmpty) {
                             commentBloc.add(
@@ -145,8 +143,8 @@ class CommentTextField extends StatelessWidget {
                             controller.clear();
                           }
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Icon(
                             Icons.send,
                             color: Colors.black,

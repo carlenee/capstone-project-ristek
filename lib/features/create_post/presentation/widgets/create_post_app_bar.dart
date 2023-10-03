@@ -4,10 +4,16 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
   final CreatePostBloc bloc;
   final TextEditingController? textController;
+  final bool isEdit;
+  final String? postId;
+  final String? prevImageUrl;
   const CreatePostAppBar({
     this.textController,
     required this.context,
     required this.bloc,
+    this.postId,
+    this.prevImageUrl,
+    this.isEdit = false,
     super.key,
   });
 
@@ -26,8 +32,8 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: CapstoneColors.purple,
         ),
       ),
-      title: const Text(
-        "Create a Post",
+      title: Text(
+        isEdit ? "Edit a Post" : "Create A Post",
         style: CapstoneFontTheme.purpleheader,
       ),
       centerTitle: true,
@@ -43,14 +49,20 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
             return TextButton(
                 onPressed: () {
                   if (state is CreatePostLoaded) {
-                    bloc.add(
-                      UploadPostEvent(
-                          pickedImage: state.pickedImage, content: textController!.text),
-                    );
+                    isEdit
+                        ? bloc.add(EditPostEvent(
+                            postId: postId!,
+                            pickedImage: state.pickedImage?.path ?? '',
+                            content: textController!.text))
+                        : bloc.add(
+                            UploadPostEvent(
+                                pickedImage: state.pickedImage?.path ?? '',
+                                content: textController!.text),
+                          );
                   }
                 },
-                child: const Text(
-                  'Post',
+                child: Text(
+                  isEdit ? 'Edit' : 'Post',
                   style: CapstoneFontTheme.purple,
                 ));
           },

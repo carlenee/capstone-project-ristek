@@ -3,7 +3,6 @@ import 'package:capstone_project/core/extensions/text_style_extensions.dart';
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/homepage/presentation/bloc/home_page_bloc.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/post_card.dart';
-import 'package:capstone_project/features/post_detail/data/repository/comment_repository.dart';
 import 'package:capstone_project/features/post_detail/presentation/widgets/comment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,6 +30,7 @@ class PostDetailPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PostDetailPageState createState() => _PostDetailPageState();
 }
 
@@ -81,7 +81,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         likeCount: widget.likeCount,
                         dislikeCount: widget.dislikeCount,
                         postId: widget.postId,
-                        userId: widget.userId,
+                        senderId: widget.userId,
                         content: widget.content,
                         photo: widget.photo,
                         bloc: widget.homeBloc,

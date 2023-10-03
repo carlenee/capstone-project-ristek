@@ -86,7 +86,7 @@ class _CommentCardState extends State<CommentCard> {
                           value: choice,
                           child: Text(
                             choice,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         );
                       }).toList();

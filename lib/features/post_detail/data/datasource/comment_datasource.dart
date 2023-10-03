@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:capstone_project/core/environments/endpoints.dart';
 import 'package:capstone_project/features/post_detail/data/models/comment_model.dart';
 import 'package:capstone_project/services/http.dart';
-import 'package:dio/dio.dart';
 
 class CommentDataSource {
   static Future<CommentListModel> getComments(String postId) async {
@@ -25,7 +23,6 @@ class CommentDataSource {
     };
     final response =
         await HttpService.post(url, body: json.encode(requestData));
-    print(response);
     if (response.statusCode == 200) {
       return response.data["message"];
     } else {
@@ -44,7 +41,6 @@ class CommentDataSource {
     final response =
         await HttpService.patch(url, body: json.encode(requestData));
 
-    print("ini response" + response.toString());
     if (response.statusCode == 200) {
       return response.data["message"];
     } else {
@@ -56,8 +52,8 @@ class CommentDataSource {
   static Future<void> deleteComment(int commentId) async {
     final url = '${Endpoints.editComments}$commentId';
 
+    // ignore: unused_local_variable
     final response = await HttpService.delete(url);
 
-    print(response.toString());
   }
 }

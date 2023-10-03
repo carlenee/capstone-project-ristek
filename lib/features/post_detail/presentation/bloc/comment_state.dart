@@ -1,4 +1,3 @@
-import 'package:capstone_project/core/errors/failure.dart';
 import 'package:capstone_project/features/post_detail/data/models/comment_model.dart';
 
 abstract class CommentState {}

@@ -6,7 +6,6 @@ import 'package:capstone_project/features/homepage/domain/repositories/home_page
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 
-
 @Injectable(as: HomePageRepository)
 class HomePageRepositoryImpl implements HomePageRepository {
   final HomePageRemoteDataSource _remoteDataSource;
@@ -14,15 +13,18 @@ class HomePageRepositoryImpl implements HomePageRepository {
   HomePageRepositoryImpl(this._remoteDataSource);
 
   @override
-  Future<Either<Failure, List<PostModel>?>> getListOfPost({int size = 5, required int page}) {
- 
-    return _remoteDataSource.getListOfPost(size: size,page: page);
+  Future<Either<Failure, List<PostModel>?>> getListOfPost(
+      {int size = 5, required int page}) {
+    return _remoteDataSource.getListOfPost(size: size, page: page);
   }
 
-  static Future<Either<Fail, void>> likePost(
-      String postId, String type) async {
+  static Future<Either<Fail, void>> likePost(String postId, String type) async {
     return await apiCall(HomePageRemoteDataSourceImpl.likePost(postId, type));
   }
 
+  @override
+  Future<Either<Failure, bool>> deletePost(postId) {
   
+    return _remoteDataSource.deletePost(postId);
+  }
 }

@@ -9,7 +9,6 @@ import 'package:capstone_project/features/create_post/presentation/pages/create_
 import 'package:capstone_project/features/homepage/presentation/pages/home_page.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/bottom_bar.dart';
 import 'package:capstone_project/features/main/profile/presentation/pages/edit_profile_page.dart';
-import 'package:capstone_project/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:capstone_project/services/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +17,7 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProfilePageState createState() => _ProfilePageState();
 }
 
@@ -54,14 +54,14 @@ class _ProfilePageState extends State<ProfilePage> {
       // Navigate to Home Page
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const HomePage(),
         ),
       );
     } else if (index == 1) {
       // Navigate to Create Post Page
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => CreatePostPage(),
+          builder: (context) => const CreatePostPage(),
         ),
       );
     }
@@ -75,30 +75,30 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Text(
                 'Profile',
                 style: CapstoneFontTheme.white.mainHeader,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               CircleAvatar(
                   radius: 60.0,
                   backgroundImage: profileImageUrl == ''
-                      ? NetworkImage(Endpoints.defaultProfile)
+                      ? const NetworkImage(Endpoints.defaultProfile)
                       : const NetworkImage(Endpoints.defaultProfile)),
-              SizedBox(height: 25.0),
+              const SizedBox(height: 25.0),
               Text('$firstName $lastName',
                   style: CapstoneFontTheme.white.title),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Text(
                 bio,
                 style: CapstoneFontTheme.white.captionBold,
               ),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                   width: 326,
                   child: CapstonPurpleButtonPrimary(
@@ -106,12 +106,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) =>
-                                EditProfilePage(), // Replace with your EditProfilePage
+                                const EditProfilePage(), // Replace with your EditProfilePage
                           ),
                         );
                       },
                       text: 'Edit Profile')),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               SizedBox(
@@ -125,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                     text: 'Logout',
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
             ],

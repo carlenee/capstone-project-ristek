@@ -1,5 +1,3 @@
-
-
 part of '_widgets.dart';
 
 class PostTextField extends StatelessWidget {
@@ -28,16 +26,14 @@ class PostTextField extends StatelessWidget {
         decoration: InputDecoration(
             filled: true,
             labelText: hint,
-            labelStyle: GoogleFonts.montserrat(
-                color: CapstoneColors.greySecondary, fontSize: 13),
+            labelStyle: CapstoneFontTheme.greySecondary,
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: CapstoneColors.greySecondary),
               borderRadius: BorderRadius.circular(10),
             ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide:
-                    const BorderSide(color: CapstoneColors.greySecondary))),
+                borderSide: const BorderSide(color: CapstoneColors.purple))),
         cursorColor: CapstoneColors.greySecondary,
         style: const TextStyle(color: CapstoneColors.greySecondary),
       ),
