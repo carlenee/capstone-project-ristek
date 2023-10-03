@@ -18,4 +18,5 @@ class CreatePostRepositoryImpl implements CreatePostRepository {
   Future<bool> editPost(UploadPostModel uploadPostModel) {
     return _remoteDataSource.editPost(uploadPostModel);
   }
+
 }

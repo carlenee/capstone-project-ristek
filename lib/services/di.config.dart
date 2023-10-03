@@ -21,11 +21,11 @@ import '../features/authentication/core/domain/repositories/authentication_repos
 import '../features/authentication/signin/domain/use_cases/sign_in_use_case.dart'
     as _i13;
 import '../features/authentication/signin/presentation/bloc/sign_in_cubit.dart'
-    as _i19;
+    as _i20;
 import '../features/authentication/signup/domain/use_cases/sign_up_use_case.dart'
     as _i14;
 import '../features/authentication/signup/presentation/bloc/sign_up_cubit.dart'
-    as _i20;
+    as _i21;
 import '../features/create_post/data/datasource/create_post_remote_data_source.dart'
     as _i6;
 import '../features/create_post/data/repositories/create_post_repository_impl.dart'
@@ -43,9 +43,10 @@ import '../features/homepage/data/repositories/home_page_repository_impl.dart'
     as _i12;
 import '../features/homepage/domain/repositories/home_page_repository.dart'
     as _i11;
+import '../features/homepage/domain/usecase/delete_post_usecase.dart' as _i17;
 import '../features/homepage/domain/usecase/get_list_of_post_use_case.dart'
-    as _i17;
-import '../features/homepage/presentation/bloc/home_page_bloc.dart' as _i18;
+    as _i18;
+import '../features/homepage/presentation/bloc/home_page_bloc.dart' as _i19;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -83,14 +84,18 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i15.UploadPostUseCase>(),
           gh<_i9.EditPostUseCase>(),
         ));
-    gh.factory<_i17.GetListOfPostUseCase>(
-        () => _i17.GetListOfPostUseCase(gh<_i11.HomePageRepository>()));
-    gh.factory<_i18.HomePageBloc>(
-        () => _i18.HomePageBloc(gh<_i17.GetListOfPostUseCase>()));
-    gh.factory<_i19.SignInCubit>(
-        () => _i19.SignInCubit(gh<_i13.SignInUseCase>()));
-    gh.factory<_i20.SignUpCubit>(
-        () => _i20.SignUpCubit(gh<_i14.SignUpUseCase>()));
+    gh.factory<_i17.DeletePostUseCase>(
+        () => _i17.DeletePostUseCase(gh<_i11.HomePageRepository>()));
+    gh.factory<_i18.GetListOfPostUseCase>(
+        () => _i18.GetListOfPostUseCase(gh<_i11.HomePageRepository>()));
+    gh.factory<_i19.HomePageBloc>(() => _i19.HomePageBloc(
+          gh<_i18.GetListOfPostUseCase>(),
+          gh<_i17.DeletePostUseCase>(),
+        ));
+    gh.factory<_i20.SignInCubit>(
+        () => _i20.SignInCubit(gh<_i13.SignInUseCase>()));
+    gh.factory<_i21.SignUpCubit>(
+        () => _i21.SignUpCubit(gh<_i14.SignUpUseCase>()));
     return this;
   }
 }

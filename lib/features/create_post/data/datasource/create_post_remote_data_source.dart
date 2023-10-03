@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart';
 abstract class CreatePostRemoteDataSource {
   Future<bool> uploadPost(UploadPostModel uploadPostModel);
   Future<bool> editPost(UploadPostModel uploadPostModel);
+
 }
 
 @Injectable(as: CreatePostRemoteDataSource)
@@ -53,4 +54,6 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
     }
     return false;
   }
+
+  
 }

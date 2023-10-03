@@ -22,8 +22,7 @@ class AutenticationRepositoryImpl implements AuthenticationRepository {
 
   @override
   Future<Either<Failure, AccessTokenModel>> signIn(
-    SignInParams signInParams
-  ) async {
+      SignInParams signInParams) async {
     return _remoteDataSource.signIn(signInParams);
   }
 }

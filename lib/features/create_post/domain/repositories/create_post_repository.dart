@@ -6,4 +6,6 @@ abstract class CreatePostRepository {
   );
 
   Future<bool> editPost(UploadPostModel uploadPostModel);
+
+
 }

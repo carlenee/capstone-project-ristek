@@ -1,13 +1,12 @@
 import 'package:capstone_project/core/constants/icons.dart';
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
 
-  CustomBottomNavigationBar({
+  const CustomBottomNavigationBar({super.key, 
     required this.currentIndex,
     required this.onTap,
   });
@@ -21,7 +20,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       unselectedItemColor: CapstoneColors.white,
       selectedItemColor:
           CapstoneColors.purple, // Set the selected item color to purple
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(CapstoneIcons.home),
           label: 'Home',

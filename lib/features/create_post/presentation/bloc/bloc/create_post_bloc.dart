@@ -57,23 +57,23 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     }
   }
 
-  void _takeImage(PickImageFromCamera event, Emitter<CreatePostState> emit) async{
+  void _takeImage(
+      PickImageFromCamera event, Emitter<CreatePostState> emit) async {
     try {
-    final pickedImage =
-            await ImagePicker().pickImage(source: ImageSource.camera);
-        emit(CreatePostLoading());
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      emit(CreatePostLoading());
 
-        if (pickedImage != null) {
-          emit(CreatePostLoaded(pickedImage: File(pickedImage.path)));
-        } else {
-          emit(const CreatePostError(
-              message: "There's an error while getting the image"));
-        }
-      } catch (e) {
-        emit(CreatePostError(message: e.toString()));
+      if (pickedImage != null) {
+        emit(CreatePostLoaded(pickedImage: File(pickedImage.path)));
+      } else {
+        emit(const CreatePostError(
+            message: "There's an error while getting the image"));
       }
+    } catch (e) {
+      emit(CreatePostError(message: e.toString()));
+    }
   }
-
 
   void _postContent(
     UploadPostEvent event,
@@ -113,4 +113,6 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
       );
     }
   }
+
+  
 }

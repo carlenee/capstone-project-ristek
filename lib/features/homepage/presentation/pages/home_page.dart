@@ -2,7 +2,6 @@ import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/create_post/presentation/pages/create_post_page.dart';
 import 'package:capstone_project/features/homepage/data/models/post_model.dart';
 import 'package:capstone_project/features/homepage/presentation/bloc/home_page_bloc.dart';
-import 'package:capstone_project/features/homepage/presentation/widgets/_widgets.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/bottom_bar.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/home_page_header.dart';
 import 'package:capstone_project/features/homepage/presentation/widgets/post_card.dart';
@@ -11,6 +10,7 @@ import 'package:capstone_project/services/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   final PagingController<int, PostModel> _pagingController =
       PagingController(firstPageKey: 1);
   late final HomePageBloc _bloc;
+  late int _userId = 0;
 
   @override
   void initState() {
@@ -44,7 +45,18 @@ class _HomePageState extends State<HomePage> {
       );
     });
 
+    _loadUserId();
+
     super.initState();
+  }
+
+  Future<void> _loadUserId() async {
+    final pref = await SharedPreferences.getInstance();
+    final userId = pref.getInt('id') ?? 0;
+
+    setState(() {
+      _userId = userId;
+    });
   }
 
   @override
@@ -96,8 +108,10 @@ class _HomePageState extends State<HomePage> {
                                 likeCount: item.likeCount,
                                 dislikeCount: item.dislikeCount,
                                 postId: item.id,
-                                userId: item.userId,
+                                senderId: item.userId,
+                                userId: _userId,
                                 bloc: _bloc,
+                                
                               );
                             },
                           ),
@@ -122,7 +136,8 @@ class _HomePageState extends State<HomePage> {
                                 likeCount: item.likeCount,
                                 dislikeCount: item.dislikeCount,
                                 postId: item.id,
-                                userId: item.userId,
+                                userId: _userId,
+                                senderId: item.userId,
                                 bloc: _bloc,
                               );
                             },
@@ -148,15 +163,16 @@ class _HomePageState extends State<HomePage> {
             // Navigate to CreatePostPage when the "Create Post" tab is tapped (index 1).
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => CreatePostPage(),
+                builder: (context) => const CreatePostPage(),
               ),
+              
             );
           } else if (index == 2) {
             // Navigate to ProfilePage when the "Profile" tab is tapped (index 2).
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) =>
-                    ProfilePage(), // Replace with your ProfilePage widget.
+                    const ProfilePage(), // Replace with your ProfilePage widget.
               ),
             );
           }
