@@ -1,5 +1,10 @@
 # &#x1F680; capstone_project
 
+[![Flutter Version](https://img.shields.io/badge/Flutter-v3.13.5-blue.svg)](https://flutter.dev/docs)
+[![Dart Version](https://img.shields.io/badge/Dart-v3.1.2-blue.svg)](https://flutter.dev/)
+[![Generic badge](https://img.shields.io/badge/Platform-Android-purple)](https://dart.dev/guides)
+
+
 Developer:
 - Arvin
 - Carlene 
@@ -9,7 +14,38 @@ Developer:
 
 - Arvin :
 - Carlene : Comment (Post, Update, Delete), Like (Post), Profile (Get & Edit)
-- Daffa :
+- Daffa : Home (Get), Create Post (Post, Delete, Update)
+
+### 🌲 Project Tree
+```tree
+├─ android/
+├─ assets/
+│  ├─ images/
+├─ lib/
+│  ├─ core/
+│  │  ├─ bases/
+│  │  ├─ client/
+│  │  ├─ constant/
+│  │  ├─ environments/
+│  │  ├─ errors/
+│  │  ├─ extensions/
+│  │  ├─ theme/
+│  ├─ features/
+│  │  ├─ authentication/
+│  │  ├─ create_post/
+│  │  ├─ homepage/
+│  │  ├─ main/
+│  │  ├─ onboarding/
+│  │  ├─ post_detail/
+│  ├─ services/
+│  ├─ app.dart
+│  ├─ main.dart
+├─ pubspec.lock
+├─ pubspec.yaml
+├─ .metadata
+├─ README.md
+├─ .gitignore
+```
 
 ## &#x1F3E0; HomePage
 ![Image Alt Text](assets/images/homepage.png)
