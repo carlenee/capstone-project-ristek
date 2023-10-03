@@ -12,7 +12,7 @@ Developer:
 
 ## &#x1F4DD; Pembagian Tugas
 
-- Arvin :
+- Arvin : Authentication (Login, Signup), Frontend Improvements
 - Carlene : Comment (Post, Update, Delete), Like (Post), Profile (Get & Edit)
 - Daffa : Home (Get), Create Post (Post, Delete, Update)
 
