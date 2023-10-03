@@ -43,7 +43,6 @@ class ProfileDataSource {
       url,
       body: data,
     );
-    print('halo' + response.data);
     if (response.statusCode != 200) {
       throw response.data['message'];
     }

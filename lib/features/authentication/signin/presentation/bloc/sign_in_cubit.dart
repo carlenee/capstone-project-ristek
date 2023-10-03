@@ -21,7 +21,6 @@ class SignInCubit extends Cubit<SignInState> {
     required String password,
   }) async {
     emit(SignInLoadingState());
-
     final params = SignInParams(
       email: email,
       password: password,
@@ -38,6 +37,7 @@ class SignInCubit extends Cubit<SignInState> {
         prefs.setString('firstName', data.firstName);
         prefs.setString('lastName', data.lastName);
         prefs.setString('bio', data.bio ?? "");
+        prefs.setInt('id', data.id);
         SharedPreferencesService.saveToken(data.token);
 
         emit(SignInSuccessState());

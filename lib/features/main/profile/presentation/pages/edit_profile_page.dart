@@ -1,13 +1,10 @@
 import 'dart:io';
 import 'package:capstone_project/core/bases/widgets/atoms/button.dart';
-import 'package:capstone_project/core/bases/widgets/atoms/text_field.dart';
 import 'package:capstone_project/core/bases/widgets/molecules/capstone_textfield.dart';
-import 'package:capstone_project/core/constants/assets.dart';
 import 'package:capstone_project/core/environments/endpoints.dart';
 import 'package:capstone_project/core/extensions/text_style_extensions.dart';
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/main/profile/data/model/profile_model.dart';
-import 'package:capstone_project/features/main/profile/data/repository/profile_repository.dart';
 import 'package:capstone_project/features/main/profile/presentation/bloc/profile_bloc.dart';
 import 'package:capstone_project/features/main/profile/presentation/bloc/profile_event.dart';
 import 'package:capstone_project/features/main/profile/presentation/bloc/profile_state.dart';
@@ -93,7 +90,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Text(
@@ -131,7 +128,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 labelText: 'Bio',
                 hintText: bio,
               ),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 width: 326,
                 child: CapstonPurpleButtonPrimary(
@@ -139,7 +136,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   text: 'Edit Profile',
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               )
             ],

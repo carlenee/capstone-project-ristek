@@ -12,6 +12,7 @@ _$UploadPostModelImpl _$$UploadPostModelImplFromJson(
       title: json['title'] as String,
       content: json['content'] as String,
       picture: json['picture'] as String,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$$UploadPostModelImplToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$UploadPostModelImplToJson(
       'title': instance.title,
       'content': instance.content,
       'picture': instance.picture,
+      'id': instance.id,
     };

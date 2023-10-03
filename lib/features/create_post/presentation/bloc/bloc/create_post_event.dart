@@ -9,11 +9,17 @@ sealed class CreatePostEvent extends Equatable {
 
 class PickImageFromGallery extends CreatePostEvent {}
 
+class PickImageFromCamera extends CreatePostEvent {}
+
 class UploadPostEvent extends CreatePostEvent {
-  final File? pickedImage;
+  final String? pickedImage;
   final String? content;
   const UploadPostEvent({this.pickedImage, this.content});
 }
 
-class RefreshPostEvent extends CreatePostEvent {
+class EditPostEvent extends CreatePostEvent {
+  final String? pickedImage;
+  final String? content;
+  final String postId;
+  const EditPostEvent({this.pickedImage, this.content, required this.postId});
 }

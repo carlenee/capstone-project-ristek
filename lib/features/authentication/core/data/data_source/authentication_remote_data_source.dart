@@ -30,7 +30,6 @@ class AuthenticationRemoteDataSourceImpl
     const url = Endpoints.loginUrl;
 
     final resp = await HttpService.post(url, body: signInParams.toJson());
-
     if (resp.statusCode != 200 || !resp.data["status"]) {
       return Left(GeneralFailure(message: resp.data['message'].toString()));
     } else {

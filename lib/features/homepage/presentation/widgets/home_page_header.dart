@@ -1,3 +1,4 @@
+import 'package:capstone_project/app.dart';
 import 'package:capstone_project/core/theme/_themes.dart';
 import 'package:capstone_project/features/create_post/presentation/pages/create_post_page.dart';
 import 'package:flutter/material.dart';
@@ -56,25 +57,20 @@ class _HomePageHeaderState extends State<HomePageHeader> {
               "$_firstName $_lastName", // Display both first name and last name
               style: CapstoneFontTheme.white,
             ),
-            Text(
+            if(_bio != '') ...[Text(
               _bio,
               style: CapstoneFontTheme.greySecondary,
-            )
+            )]
           ],
         ),
         IconButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const CreatePostPage(),
-              ),
-            );
-          },
-          icon: const Icon(
-            Icons.add_rounded,
-            color: CapstoneColors.purple,
-          ),
-        ),
+            onPressed: () {
+              nav.push(const CreatePostPage());
+            },
+            icon: const Icon(
+              Icons.add_rounded,
+              color: CapstoneColors.purple,
+            ))
       ],
     );
   }

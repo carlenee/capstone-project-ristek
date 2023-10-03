@@ -10,7 +10,8 @@ sealed class HomePageEvent extends Equatable {
 class HomePageLoadDataEvent extends HomePageEvent {
   final PagingController pagingController;
   final int pageKey;
-  const HomePageLoadDataEvent({required this.pagingController, required this.pageKey});
+  const HomePageLoadDataEvent(
+      {required this.pagingController, required this.pageKey});
 
   @override
   List<Object> get props => [pagingController, pageKey];
@@ -24,4 +25,18 @@ class LikePostEvent extends HomePageEvent {
     required this.postId,
     required this.type,
   });
+
+  @override
+  List<Object> get props => [postId, type];
+}
+
+class DeletePostEvent extends HomePageEvent {
+  final String postId;
+
+  const DeletePostEvent({
+    required this.postId,
+  });
+
+  @override
+  List<Object> get props => [postId];
 }

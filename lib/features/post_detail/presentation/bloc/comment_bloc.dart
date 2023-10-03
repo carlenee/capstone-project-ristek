@@ -34,16 +34,12 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     Emitter<CommentState> emit,
   ) async {
     emit(CommentLoadingState());
-    print(
-        'Received EditCommentEvent with ID: ${event.commentId}, New value: ${event.value}, Post ID: ${event.postId}');
 
     try {
       await CommentRepository.editComment(
           event.commentId, event.value, event.postId);
-      print('Successfully edited comment: ${event.commentId}');
       emit(CommentEditedState());
     } catch (error) {
-      print('Failed to edit comment: ');
 
       emit(CommentErrorState(error.toString()));
     }

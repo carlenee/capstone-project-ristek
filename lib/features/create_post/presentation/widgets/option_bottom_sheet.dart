@@ -59,7 +59,9 @@ class OptionBottomSheet {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  bloc.add(PickImageFromCamera());
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

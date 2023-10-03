@@ -1,4 +1,3 @@
-import '../../data/model/profile_model.dart';
 
 abstract class ProfileState {
   const ProfileState();
