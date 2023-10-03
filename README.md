@@ -12,6 +12,15 @@ Developer:
 - Daffa :
 
 ## &#x1F3E0; HomePage
+![Image Alt Text](assets/images/homepage.png)
+![Image Alt Text](assets/images/homepage_button.png)
+
+## Create Post
+![Image Alt Text](assets/images/create_post.png)
+
+## Edit Post
+![Image Alt Text](assets/images/edit_post.png)
+
 
 ## &#x1F50D; Post Detail Page
 ![Image Alt Text](assets/images/detail_page.png)
